@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Información Producto{% endblock %}
+{% block css %}{% endblock %}
+{% block h1 %}Información Producto{% endblock %}
+{% block content %}
+<table class="info-prod-pedidos">
+    <tr>
+        <th>Tipo producto</th>
+        <!-- <td>Fruta</td> -->
+        <td>{{ data_prod[0] | capitalize }}</td>
+    </tr>
+    <tr>
+        <th>Producto(s)</th>
+        <!-- <td>Frambuesa</td> -->
+        <td>{{ data_prod_tipo }}</td>
+    </tr>
+    <tr class="desc-row">
+        <th>Descripción</th>
+        <!-- <td>Delicadas y jugosas, nuestras frambuesas provienen de los fértiles campos de la región del Maule, cultivadas con esmero por el experto agricultor Raúl De la Fuente en la pintoresca comuna de Molina. Estas frambuesas, cuidadosamente seleccionadas, ofrecen un sabor dulce y una textura fresca que deleitarán tus sentidos. Cada bocado es una explosión de frescura y calidad, cultivadas con pasión y compromiso con la excelencia agrícola.</td> -->
+        <td>{{ data_prod[1] }}</td>
+    </tr>
+    <tr>
+        <th>Fotos</th>
+        <!-- <td ><img id="changing-img" src="../img/raspberries-freepik-640x480.jpg" alt="Freepik Raspberries 640x480"></td> -->
+        {% set filename = data_fotos.split('.') %}
+        <td ><img id="changing-img" src="{{ url_for('static', filename='uploads/' + filename[0] + '_640x480' + '.' + filename[1]) }}" alt="filename[0]"></td>
+    </tr>
+    <tr>
+        <th>Región</th>
+        <!-- <td>Región del Maule</td> -->
+        <td>{{ data_reg }}</td>
+    </tr>
+    <tr>
+        <th>Comuna</th>
+        <td>{{ data_com }}</td>
+    </tr>
+    <tr>
+        <th>Nombre productor</th>
+        <!-- <td>Raúl De la Fuente</td> -->
+        <td>{{ data_prod[3] }}</td>
+    </tr>
+    <tr>
+        <th>Email productor</th>
+        <!-- <td>raul.de.la.fuente@jaja.cl</td> -->
+        <td>{{ data_prod[4] }}</td>
+    </tr>
+    <tr>
+        <th>Número celular productor</th>
+        <!-- <td>+569 7354 9823</td> -->
+        <td>{{ data_prod[5] }}</td>
+    </tr>
+</table>
+
+<footer>
+    <p>Imágenes de <a href="https://www.freepik.com">Freepik</a></p>
+</footer>
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/informacion-producto.js') }}"></script>
+{% endblock %}

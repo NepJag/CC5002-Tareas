@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Ver Pedidos{% endblock %}
+{% block css %}{% endblock %}
+{% block h1 %}Ver Pedidos{% endblock %}
+{% block content %}
+<table class="ver-prod-pedidos">
+    <tr class="head-row">
+        <th>Tipo</th>
+        <th>Producto(s)</th>
+        <th>Región</th>
+        <th>Comuna</th>
+        <th>Nombre comprador</th>
+    </tr>
+    <tr class="clickable-row">
+        <td>Fruta</td>
+        <td>Manzana</td>
+        <td>Región de Valparaíso</td>
+        <td>Viña del Mar</td>
+        <td>José Urzúa</td>
+    </tr>
+    <tr class="clickable-row">
+        <td>Fruta</td>
+        <td>Frambuesa</td>
+        <td>Región del Maule</td>
+        <td>Molina</td>
+        <td>Raúl De la Fuente</td>
+    </tr>
+    <tr class="clickable-row">
+        <td>Verdura</td>
+        <td>Repollo</td>
+        <td>Región Metropolitana de Santiago</td>
+        <td>La Florida</td>
+        <td>Nelson Baloian</td>
+    </tr>
+    <tr class="clickable-row">
+        <td>Verdura</td>
+        <td>Cebolla</td>
+        <td>Región de Valparaíso</td>
+        <td>Quillota</td>
+        <td>Aidan Hogan</td>
+    </tr>
+    <tr class="clickable-row">
+        <td>Fruta</td>
+        <td>Naranja</td>
+        <td>Región de Los Ríos</td>
+        <td>Valdivia</td>
+        <td>Jocelyn Simmonds</td>
+    </tr>
+</table>
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/ver-pedidos.js') }}"></script>
+{% endblock %}

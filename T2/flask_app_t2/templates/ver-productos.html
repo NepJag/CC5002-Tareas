@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Ver Productos{% endblock %}
+{% block css %}{% endblock %}
+{% block h1 %}Ver Productos{% endblock %}
+{% block content %}
+<table class="ver-prod-pedidos">
+    <tr class="head-row">
+        <th>Tipo</th>
+        <th>Producto(s)</th>
+        <th>Región</th>
+        <th>Comuna</th>
+        <th>Fotos</th>
+    </tr>
+    {% for index in range(data_prods|length) %}
+        {% set prod = data_prods[index] %}
+        <tr class="clickable-row" id="{{ prod[0] }}">
+            <td>{{ prod[1] | capitalize }}</td>
+            <td>{{ data_prod_tipo[index] }}</td>
+            <td>{{ data_reg[index] }}</td>
+            <td>{{ data_com[index] }}</td>
+            <td>
+                {% set filename = data_fotos[index].split('.') %}
+                <img src="{{ url_for('static', filename='uploads/' + filename[0] + '_120x120' + '.' + filename[1] )}}" alt="filename[0] 120x120">
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+{% if page > 1 %}
+    <a class="previous-button" href="{{ url_for('verProductos', page=page-1) }}">Previous</a>
+{% endif %}
+{% if page < total_pages %}
+    <a class="next-button" href="{{ url_for('verProductos', page=page+1) }}">Next</a>
+{% endif %}
+
+<footer>
+    <p>Imágenes de <a href="https://www.freepik.com">Freepik</a></p>
+</footer>
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/ver-productos.js') }}"></script>
+{% endblock %}

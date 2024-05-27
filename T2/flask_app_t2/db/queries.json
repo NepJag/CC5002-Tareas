@@ -1,0 +1,14 @@
+{
+    "create_prod": "INSERT INTO producto (tipo, descripcion, comuna_id, nombre_productor, email_productor, celular_productor) VALUES (%s,%s,%s,%s,%s,%s);",
+    "get_prods_n": "SELECT id, tipo, descripcion, comuna_id, nombre_productor, email_productor, celular_productor FROM producto ORDER BY id DESC LIMIT %s, %s;",
+    "get_prods_amt": "SELECT COUNT(*) FROM producto;",
+    "get_prod_id": "SELECT tipo, descripcion, comuna_id, nombre_productor, email_productor, celular_productor FROM producto WHERE id=%s;",
+    "create_prod_frutver": "INSERT INTO producto_verdura_fruta (producto_id, tipo_verdura_fruta_id) VALUES (%s,%s);",
+    "get_prod_tipo": "SELECT TVF.nombre FROM tipo_verdura_fruta TVF, producto_verdura_fruta PVF WHERE TVF.id=PVF.tipo_verdura_fruta_id AND PVF.producto_id=%s;",
+    "create_foto": "INSERT INTO foto (ruta_archivo, nombre_archivo, producto_id) VALUES (%s,%s,%s);",
+    "get_fotos": "SELECT ruta_archivo, nombre_archivo FROM foto WHERE producto_id=%s;",
+    "get_reg_com": "SELECT comuna.region_id, region.nombre, comuna.nombre, comuna.id FROM region, comuna WHERE region.id=comuna.region_id;",
+    "get_reg_com_id": "SELECT region.nombre, comuna.nombre FROM region, comuna WHERE comuna.region_id=region.id AND comuna.id=%s;",
+    "get_frut_ver": "SELECT id, nombre FROM tipo_verdura_fruta;",
+    "get_last_prod_id": "SELECT LAST_INSERT_ID();"
+}

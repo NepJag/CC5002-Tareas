@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Index</title>
+        <link 
+            rel="stylesheet" 
+            href="{{ url_for('static', filename='css/index.css')}}"
+        >
+    </head>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-success">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('agregarProducto') }}">Agregar Producto</a></li>
+            <li><a href="{{ url_for('agregarPedido') }}">Agregar Pedido</a></li>
+            <li><a href="{{ url_for('verProductos') }}">Ver Productos</a></li>
+            <li><a href="{{ url_for('verPedidos') }}">Ver Pedidos</a></li>
+        </ul>
+    </nav>
+</html>

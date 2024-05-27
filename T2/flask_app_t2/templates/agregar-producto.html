@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %} Agregar Producto {% endblock %}
+{% block css %}{% endblock %}
+{% block h1 %} Agregar Producto {% endblock %}
+{% block content %}
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-danger">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
+        <form class="formulario" id="agr-prod-form" action="agregar-producto" method="post" enctype="multipart/form-data">
+
+            <div class="input" id="tipo-input">
+                <label for="tipo-prod">Tipo producto</label>
+                <select id="tipo-prod" name="tipo-prod" required>
+                    <option value="">Seleccione un tipo de producto</option>
+                    <option value="fruta">Fruta</option>
+                    <option value="verdura">Verdura</option>
+                </select>
+            </div>
+
+            <div class="input" id="prod-input">
+                <label for="prod">Producto</label>
+                <select id="prod" name="prod" multiple required></select>
+            </div>
+
+            <div class="input" id="desc-input">
+                <label for="desc">Descripción</label>
+                <textarea id="desc" name="desc" rows="4" cols="50"></textarea>
+            </div>
+
+            <div class="input" id="foto-input">
+                <label for="foto">Fotos del producto</label>
+                <input type="file" id="foto" name="foto" accept="image/*" multiple required>
+            </div>
+
+            <div class="input" id="reg-input">
+                <label for="region">Región</label>
+                <select id="region" name="region" required>
+                    <option value="">Seleccione una región</option>
+                </select>
+            </div>
+
+            <div class="input" id="comuna-input">
+                <label for="comuna">Comuna</label>
+                <select id="comuna" name="comuna" required>
+                    <option value="">Seleccione una comuna</option>
+                </select>
+            </div>
+
+            <div class="input" id="nombre-input">
+                <label for="nombre">Nombre</label>
+                <input id="nombre" name="nombre" type="text" size="80" required>
+            </div>
+
+            <div class="input" id="email-input">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" size="30" required>
+            </div>
+
+            <div class="input" id="cel-input">
+                <label for="cel">Número de celular</label>
+                <input id="cel" name="cel" type="tel" size="15">
+            </div>
+
+            <div class="botones">
+                <button type="button" id="agr-prod">Agregar Producto(s)</button>
+            </div>
+
+        </form>
+    </div>
+
+    <div id="confirmation-dialog" class="confirmation-dialog" >
+        <div class="confirmation-content">
+            <h3>¿Confirma el registro de este producto?</h3>
+            <div class="confirmation-buttons">
+            <button id="confirm-yes">Sí, confirmo</button>
+            <button id="confirm-no">No, quiero volver al formulario</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/agregar-producto.js') }}"></script>
+{% endblock %}
