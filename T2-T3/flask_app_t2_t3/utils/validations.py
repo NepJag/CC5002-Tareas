@@ -32,7 +32,7 @@ def validatePics(pics):
 def validateRegion(region):
     # check if region is in ((1, 'Región de Tarapacá', 'Camiña'), (1, 'Región de Tarapacá', 'Huara'), ...)
     valid_reg_com = db.get_reg_com()
-    return region in [region[1] for region in valid_reg_com] and region != ""
+    return region in [regions[1] for regions in valid_reg_com] and region != ""
 
 def validateComuna(comuna):
     valid_reg_com = db.get_reg_com()

@@ -1,3 +1,14 @@
+// --- Get input and button elements ---
+const tipoProductoSelect = document.getElementById('tipo-prod');
+const productosSelect = document.getElementById('prod');
+const descTextArea = document.getElementById('desc');
+const regionSelect = document.getElementById('region');
+const comunaSelect = document.getElementById('comuna');
+const nombreTextBox = document.getElementById('nombre');
+const emailTextBox = document.getElementById('email');
+const celTextBox = document.getElementById('cel');
+
+// --- Conditional dropdown menus ---
 
 // Populate the regiones 
 fetch('/reg-com')
@@ -6,7 +17,7 @@ fetch('/reg-com')
     reg_com = data;
     reg_com['regiones'].forEach((region_i) => {
       const option = document.createElement('option');
-      option.value = reg_com['regiones'].indexOf(region_i);
+      option.value = region_i['region'];
       option.innerText = region_i['region'];
       regionSelect.append(option);
     });
@@ -23,26 +34,6 @@ fetch('/frut-ver')
     console.error('Error:', error);
   });
   
-  // --- Get input and button elements ---
-  
-  const tipoProductoSelect = document.getElementById('tipo-prod');
-  const productosSelect = document.getElementById('prod');
-  const descTextArea = document.getElementById('desc');
-  const regionSelect = document.getElementById('region');
-  const comunaSelect = document.getElementById('comuna');
-  const nombreTextBox = document.getElementById('nombre');
-  const emailTextBox = document.getElementById('email');
-  const celTextBox = document.getElementById('cel');
-  
-  // --- Conditional dropdown menus ---
-  
-  // Populate the regiones 
-  reg_com['regiones'].forEach((region_i) => {
-    const option = document.createElement('option');
-    option.value = reg_com['regiones'].indexOf(region_i);
-    option.innerText = region_i['region'];
-    regionSelect.append(option);
-  });
   
   // Populate the product options based on the selected product type
   tipoProductoSelect.addEventListener('change', () => {
@@ -83,7 +74,7 @@ fetch('/frut-ver')
   
     // Populate the product options based on the selected product type
     if (regionSelect.value != "") { // If its on the default, we can't search for comunas
-      const comunasRegion = reg_com['regiones'][regionSelect.value]['comunas'];
+      const comunasRegion = reg_com['regiones'].find(region => region.region === regionSelect.value).comunas;
       comunasRegion.forEach((comuna_i) => {
         const option = document.createElement('option');
         option.value = comuna_i;
@@ -204,8 +195,7 @@ fetch('/frut-ver')
 
       const handleConfirmYes = () => {
         // Handle successful form submission
-        alert('Hemos recibido el registro de producto. Muchas gracias.');
-        window.location.href = '/';
+        document.getElementById("agr-ped-form").submit();
       };
 
       const handleConfirmNo = () => {
@@ -222,5 +212,5 @@ fetch('/frut-ver')
   
   // --- Event Listener ---
   
-  const submitButton = document.getElementById("agr-prod");
+  const submitButton = document.getElementById("agr-ped");
   submitButton.addEventListener("click", handleFormSubmit);

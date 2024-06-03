@@ -4,7 +4,14 @@
 {% block h1 %}Agregar Pedido{% endblock %}
 {% block content %}
 <div class="container">
-    <form class="formulario" id="agr-ped-form">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-danger">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <form class="formulario" id="agr-ped-form" action="agregar-pedido" method="post" enctype="multipart/form-data">
         <div class="input" id="tipo-input">
             <label for="tipo-prod">Tipo producto</label>
             <select id="tipo-prod" name="tipo-prod" required>
@@ -51,9 +58,9 @@
             <label for="cel">Número de celular</label>
             <input id="cel" name="cel" type="text" size="15">
         </div>
-        <!-- TODO: validar datos e informar errores al hacer click en el botón -->
+
         <div class="botones">
-            <button type="button" id="agr-prod">Agregar Pedido</button>
+            <button type="button" id="agr-ped">Agregar Pedido</button>
         </div>
     </form>
 </div>

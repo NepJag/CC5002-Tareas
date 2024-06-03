@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Ver Pedidos{% endblock %}
+{% block css %}{% endblock %}
+{% block h1 %}Ver Pedidos{% endblock %}
+{% block content %}
+<table class="ver-prod-pedidos">
+    <tr class="head-row">
+        <th>Tipo</th>
+        <th>Producto(s)</th>
+        <th>Región</th>
+        <th>Comuna</th>
+        <th>Nombre comprador</th>
+    </tr>
+    {% for index in range(data_pedidos|length) %}
+        {% set ped = data_pedidos[index] %}
+        <tr class="clickable-row" id="{{ ped[0] }}">
+            <td>{{ ped[1] | capitalize }}</td>
+            <td>{{ data_ped_tipo[index] }}</td>
+            <td>{{ data_reg[index] }}</td>
+            <td>{{ data_com[index] }}</td>
+            <td>{{ ped[4] }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% if page > 1 %}
+    <a class="previous-button" href="{{ url_for('verPedidos', page=page-1) }}">Previous</a>
+{% endif %}
+{% if page < total_pages %}
+    <a class="next-button" href="{{ url_for('verPedidos', page=page+1) }}">Next</a>
+{% endif %}
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/ver-pedidos.js') }}"></script>
+{% endblock %}

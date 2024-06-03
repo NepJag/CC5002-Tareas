@@ -155,7 +155,6 @@ const handleFormSubmit = () => {
     productosSelect.style.borderColor = "";
   }
 
-  // TODO: change coloring behaviour
   if (!validatePics()) {
     isValid = false;
     errorMessage += "Por favor, sube imágenes de tu(s) producto(s) (1 mínimo, 3 máximo).\n";

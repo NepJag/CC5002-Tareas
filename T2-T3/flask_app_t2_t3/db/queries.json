@@ -10,5 +10,10 @@
     "get_reg_com": "SELECT comuna.region_id, region.nombre, comuna.nombre, comuna.id FROM region, comuna WHERE region.id=comuna.region_id;",
     "get_reg_com_id": "SELECT region.nombre, comuna.nombre FROM region, comuna WHERE comuna.region_id=region.id AND comuna.id=%s;",
     "get_frut_ver": "SELECT id, nombre FROM tipo_verdura_fruta;",
-    "get_last_prod_id": "SELECT LAST_INSERT_ID();"
+    "get_last_id": "SELECT LAST_INSERT_ID();",
+    "create_pedido": "INSERT INTO pedido (tipo, descripcion, comuna_id, nombre_comprador, email_comprador, celular_comprador) VALUES (%s,%s,%s,%s,%s,%s);",
+    "create_ped_frutver": "INSERT INTO pedido_verdura_fruta (tipo_verdura_fruta_id, pedido_id) VALUES (%s,%s);",
+    "get_pedidos_n": "SELECT id, tipo, descripcion, comuna_id, nombre_comprador, email_comprador, celular_comprador FROM pedido ORDER BY id DESC LIMIT %s, %s;",
+    "get_pedidos_amt": "SELECT COUNT(*) FROM pedido;",
+    "get_ped_tipo": "SELECT TVF.nombre FROM tipo_verdura_fruta TVF, pedido_verdura_fruta PVF WHERE TVF.id=PVF.tipo_verdura_fruta_id AND PVF.pedido_id=%s;"
 }

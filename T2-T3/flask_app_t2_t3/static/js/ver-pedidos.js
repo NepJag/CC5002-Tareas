@@ -5,6 +5,6 @@ const rows = document.querySelectorAll('.clickable-row');
 rows.forEach(row => {
     row.addEventListener('click', () => {
         // Redirect to informacion-pedido.html
-        window.location.href = '/info-pedido';
+        window.location.href = '/info-pedido/' + row.id;
     });
 }); 

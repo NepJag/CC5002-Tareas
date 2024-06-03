@@ -80,6 +80,27 @@ def get_frut_ver():
     user = cursor.fetchall()
     return user
 
+def get_pedidos_n(nPage):
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute(QUERY_DICT["get_pedidos_n"], ((nPage-1)*5, nPage*5))
+    user = cursor.fetchall()
+    return user
+
+def get_pedidos_amt():
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute(QUERY_DICT["get_pedidos_amt"])
+    user = cursor.fetchone()
+    return user
+
+def get_ped_tipo(id_pedido):
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute(QUERY_DICT["get_ped_tipo"], (id_pedido,))
+    user = cursor.fetchall()
+    return user
+
 def create_prod(tipo, descripcion, 
                 comuna_id, nombre_productor, 
                 email_productor, celular_productor):
@@ -89,7 +110,7 @@ def create_prod(tipo, descripcion,
                                                comuna_id, nombre_productor, 
                                                email_productor, celular_productor))
     conn.commit()
-    cursor.execute(QUERY_DICT["get_last_prod_id"])
+    cursor.execute(QUERY_DICT["get_last_id"])
     user = cursor.fetchone()
     return user
 
@@ -105,6 +126,24 @@ def create_foto(ruta_archivo, nombre_archivo, producto_id):
     cursor.execute(QUERY_DICT["create_foto"], (ruta_archivo, nombre_archivo, producto_id))
     conn.commit()
     
+def create_pedido(tipo, descripcion, comuna_id,
+                  nombre_comprador, email_comprador,
+                  celular_comprador):
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute(QUERY_DICT["create_pedido"], (tipo, descripcion, comuna_id,
+                                                 nombre_comprador, email_comprador,
+                                                 celular_comprador))
+    conn.commit()
+    cursor.execute(QUERY_DICT["get_last_id"])
+    user = cursor.fetchone()
+    return user
+
+def create_ped_frutver(tipo_verdura_fruta_id, pedido_id):
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute(QUERY_DICT["create_ped_frutver"], (tipo_verdura_fruta_id, pedido_id))
+    conn.commit()
 
 # # -- db-related functions --
 
