@@ -273,9 +273,16 @@ def infoProducto(id):
 
     return render_template("informacion-producto.html", data_prod=data_prod, data_reg=data_reg, data_com=data_com, data_fotos=data_fotos, data_prod_tipo=data_prod_tipo)
 
-@app.route("/info-pedido")
-def infoPedido():
-    return render_template("informacion-pedido.html")
+@app.route("/info-pedido/<int:id>", methods=["GET"])
+def infoPedido(id):
+    # Data from db
+    data_pedido = db.get_ped_by_id(id)
+    data_reg = db.get_reg_com_by_id(data_pedido[2])[0]
+    data_com = db.get_reg_com_by_id(data_pedido[2])[1]
+    data_ped_tipo = ", ".join([item[0] for item in db.get_ped_tipo(id)])
+    print(data_pedido, data_reg, data_com, data_ped_tipo)
+
+    return render_template("informacion-pedido.html", data_pedido=data_pedido, data_reg=data_reg, data_com=data_com, data_ped_tipo=data_ped_tipo)
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -6,35 +6,35 @@
         <table class="info-prod-pedidos">
             <tr>
                 <th>Tipo producto</th>
-                <td>Fruta</td>
+                <td>{{ data_pedido[0] | capitalize }}</td>
             </tr>
             <tr>
                 <th>Producto</th>
-                <td>Frambuesa</td>
+                <td>{{ data_ped_tipo }}</td>
             </tr>
             <tr class="desc-row">
                 <th>Descripción</th>
-                <td>Qué es un completo?</td>
+                <td>{{ data_pedido[1] }}</td>
             </tr>
             <tr>
                 <th>Región</th>
-                <td>Región del Maule</td>
+                <td>{{ data_reg }}</td>
             </tr>
             <tr>
                 <th>Comuna</th>
-                <td>Molina</td>
+                <td>{{ data_com }}</td>
             </tr>
             <tr>
                 <th>Nombre comprador</th>
-                <td>Jorge San Martín</td>
+                <td>{{ data_pedido[3] }}</td>
             </tr>
             <tr>
                 <th>Email comprador</th>
-                <td>jsanmartin@dios.cl</td>
+                <td>{{ data_pedido[4] }}</td>
             </tr>
             <tr>
                 <th>Número celular comprador</th>
-                <td>+569 1111 0000</td>
+                <td>{{ data_pedido[5] }}</td>
             </tr>
         </table>
         {% endblock %}

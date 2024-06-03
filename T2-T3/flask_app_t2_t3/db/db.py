@@ -101,6 +101,13 @@ def get_ped_tipo(id_pedido):
     user = cursor.fetchall()
     return user
 
+def get_ped_by_id(id_pedido):
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute(QUERY_DICT["get_ped_by_id"], (id_pedido,))
+    user = cursor.fetchone()
+    return user
+
 def create_prod(tipo, descripcion, 
                 comuna_id, nombre_productor, 
                 email_productor, celular_productor):
