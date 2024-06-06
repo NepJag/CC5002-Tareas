@@ -7,3 +7,5 @@
 - Se ocupó pillow para manejar las imágenes de distintos tamaños, basado en lo dicho en el foro.
 - Como el enunciado no se menciona mucho sobre las múltiples fotos de un producto, se presenta solo 1 foto en información del producto.
 - Las validaciones las corrí copiando el HTML que entregaba la vista al hacer CTRL+U y después copiándolo en la caja de validator.w3.org
+- Para las funcionalidades de 'Agregar Pedido', 'Ver Pedidos' e 'Información de pedido' se procedió como en la T2
+- Los gráficos que se usan en las estadísticas son gracias a la API de Highcharts.
