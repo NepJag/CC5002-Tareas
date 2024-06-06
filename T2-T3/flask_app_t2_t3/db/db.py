@@ -108,6 +108,20 @@ def get_ped_by_id(id_pedido):
     user = cursor.fetchone()
     return user
 
+def get_num_prods_frut_ver():
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute(QUERY_DICT["get_num_prods_frut_ver"])
+    user = cursor.fetchall()
+    return user
+
+def get_num_pedidos_com():
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute(QUERY_DICT["get_num_pedidos_com"])
+    user = cursor.fetchall()
+    return user
+
 def create_prod(tipo, descripcion, 
                 comuna_id, nombre_productor, 
                 email_productor, celular_productor):

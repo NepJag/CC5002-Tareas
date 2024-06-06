@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for, session
+from flask import Flask, request, render_template, redirect, url_for, jsonify
 from flask import flash, get_flashed_messages
 from PIL import Image
 from utils.validations import *
@@ -283,6 +283,31 @@ def infoPedido(id):
     print(data_pedido, data_reg, data_com, data_ped_tipo)
 
     return render_template("informacion-pedido.html", data_pedido=data_pedido, data_reg=data_reg, data_com=data_com, data_ped_tipo=data_ped_tipo)
+
+@app.route("/stats", methods=["GET"])
+def stats():
+    return render_template("stats.html")
+
+@app.route("/get-stats-data", methods=["GET"])
+def getStatsData():
+    prodsFrutVer = db.get_num_prods_frut_ver()
+    pedidosCom = db.get_num_pedidos_com()
+    print(prodsFrutVer, pedidosCom)
+
+    prodsFrutVer_json = [{
+        "frutVer" : prods[0],
+        "cantidad" : prods[1]
+    } for prods in prodsFrutVer]
+
+    pedidosCom_json = [{
+        "comuna" : pedidos[0],
+        "cantidad" : pedidos[1]
+    } for pedidos in pedidosCom]
+
+    return jsonify({
+        "prodsFrutVer": prodsFrutVer_json, 
+        "pedidosCom" : pedidosCom_json
+        })
 
 if __name__ == "__main__":
     app.run(debug=True)

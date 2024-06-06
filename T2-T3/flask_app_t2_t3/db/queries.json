@@ -16,5 +16,7 @@
     "get_pedidos_n": "SELECT id, tipo, descripcion, comuna_id, nombre_comprador, email_comprador, celular_comprador FROM pedido ORDER BY id DESC LIMIT %s, %s;",
     "get_pedidos_amt": "SELECT COUNT(*) FROM pedido;",
     "get_ped_tipo": "SELECT TVF.nombre FROM tipo_verdura_fruta TVF, pedido_verdura_fruta PVF WHERE TVF.id=PVF.tipo_verdura_fruta_id AND PVF.pedido_id=%s;",
-    "get_ped_by_id": "SELECT tipo, descripcion, comuna_id, nombre_comprador, email_comprador, celular_comprador FROM pedido WHERE id=%s;"
+    "get_ped_by_id": "SELECT tipo, descripcion, comuna_id, nombre_comprador, email_comprador, celular_comprador FROM pedido WHERE id=%s;",
+    "get_num_prods_frut_ver": "SELECT TVF.nombre, COUNT(*) FROM producto_verdura_fruta PVF, tipo_verdura_fruta TVF WHERE PVF.tipo_verdura_fruta_id = TVF.id GROUP BY TVF.nombre;",
+    "get_num_pedidos_com": "SELECT CO.nombre, COUNT(*) FROM pedido PE, comuna CO WHERE PE.comuna_id=CO.id GROUP BY PE.comuna_id;"
 }

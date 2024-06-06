@@ -267,3 +267,19 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
+/* Highcharts */
+.chart-container {
+  flex: 1; /* Distribute available space equally */
+}
+.chart-container:nth-child(1) {
+  margin-right: 10px; /* Add margin between charts */
+}
+.chart-container:nth-child(2) {
+  margin-left: 10px; /* Add margin between charts */
+}
+
+/* Flexbox container */
+.chart-container-wrapper {
+  display: flex;
+}
